@@ -808,13 +808,14 @@
       const nights = document.getElementById('pkg-nights').value;
       const wantCar = document.getElementById('pkg-car').checked;
       // Open Google Flights for the air portion
-      let flightUrl = `https://www.google.com/travel/flights?q=Flights%20to%20${encodeURIComponent(to)}%20from%20${encodeURIComponent(from)}%20on%20${date}`;
+  const pkgDateFmt = date.replace(/-/g, '').slice(2);
+  let flightUrl = `https://www.skyscanner.net/transport/flights/${encodeURIComponent(from)}/${encodeURIComponent(to)}/${pkgDateFmt}/?adultsv2=1&cabinclass=economy&rtn=0&associateid=${SKYSCANNER_AFFILIATE_ID}`;
       window.open(flightUrl, '_blank');
       // Also open hotel search
       const checkout = new Date(date);
       checkout.setDate(checkout.getDate() + parseInt(nights));
       const checkoutStr = checkout.toISOString().split('T')[0];
-      const hotelUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(to)}&checkin=${date}&checkout=${checkoutStr}`;
+      const hotelUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(to)}&checkin=${date}&checkout=${checkoutStr}&aid=${BOOKING_AFFILIATE_ID}`;
       setTimeout(() => window.open(hotelUrl, '_blank'), 600);
       if (wantCar) {
         setTimeout(() => {
