@@ -771,27 +771,33 @@
     });
 
     // Flight search → Google Flights (or similar)
-    function handleFlightSearch(e) {
-      e.preventDefault();
-      const from = document.getElementById('from').value.trim();
-      const to = document.getElementById('to').value.trim();
-      const depart = document.getElementById('depart').value;
-      const ret = document.getElementById('return').value;
-      // Build Google Flights URL
-      let url = `https://www.google.com/travel/flights?q=Flights%20to%20${encodeURIComponent(to)}%20from%20${encodeURIComponent(from)}%20on%20${depart}`;
-      if (ret) url += `%20through%20${ret}`;
-      window.open(url, '_blank');
+  function handleFlightSearch(e) {
+    e.preventDefault();
+    const from = document.getElementById('from').value.trim();
+    const to = document.getElementById('to').value.trim();
+    const depart = document.getElementById('depart').value;
+    const ret = document.getElementById('return').value;
+    const SKYSCANNER_AFFILIATE_ID = 'YOUR_SKYSCANNER_ID';
+    const departFmt = depart.replace(/-/g, '').slice(2);
+    let url = `https://www.skyscanner.net/transport/flights/${encodeURIComponent(from)}/${encodeURIComponent(to)}/${departFmt}/`;
+    if (ret) {
+      const retFmt = ret.replace(/-/g, '').slice(2);
+      url += `${retFmt}/`;
     }
+    url += `?adultsv2=1&cabinclass=economy&rtn=${ret ? '1' : '0'}&associateid=${SKYSCANNER_AFFILIATE_ID}`;
+    window.open(url, '_blank');
+  }
 
-    // Hotel search → Booking.com or Google Hotels
-    function handleHotelSearch(e) {
-      e.preventDefault();
-      const dest = document.getElementById('hotel-dest').value.trim();
-      const checkin = document.getElementById('checkin').value;
-      const checkout = document.getElementById('checkout').value;
-      const url = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(dest)}&checkin=${checkin}&checkout=${checkout}`;
-      window.open(url, '_blank');
-    }
+  // Hotel search → Booking.com or Google Hotels
+  function handleHotelSearch(e) {
+    e.preventDefault();
+    const dest = document.getElementById('hotel-dest').value.trim();
+    const checkin = document.getElementById('checkin').value;
+    const checkout = document.getElementById('checkout').value;
+    const BOOKING_AFFILIATE_ID = 'YOUR_BOOKING_AID';
+    const url = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(dest)}&checkin=${checkin}&checkout=${checkout}&aid=${BOOKING_AFFILIATE_ID}`;
+    window.open(url, '_blank');
+  }
 
     // Package search → Google Flights + Hotels (car via note)
     function handlePackageSearch(e) {
