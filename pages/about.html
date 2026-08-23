@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About SkyNest — Our Story</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: { 50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985',900:'#0c4a6e' },
+            nest: { 500:'#f59e0b',600:'#d97706' }
+          },
+          fontFamily: { sans:['Inter','sans-serif'], display:['Playfair Display','serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans text-gray-800 antialiased">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="../index.html" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-sky-700 flex items-center justify-center">
+            <i class="fas fa-plane text-white text-lg"></i>
+          </div>
+          <span class="font-display text-2xl font-bold text-sky-800">SkyNest</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="../index.html#flights" class="text-gray-600 hover:text-sky-600 font-medium">Flights</a>
+          <a href="../index.html#hotels" class="text-gray-600 hover:text-sky-600 font-medium">Hotels</a>
+          <a href="../index.html#airlines" class="text-gray-600 hover:text-sky-600 font-medium">Airlines</a>
+          <a href="about.html" class="text-sky-600 font-medium">About</a>
+          <a href="contact.html" class="text-gray-600 hover:text-sky-600 font-medium">Contact</a>
+        </div>
+        <a href="../index.html#search" class="hidden sm:inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-full font-semibold transition">Search Deals</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-28 pb-16 bg-gradient-to-br from-sky-900 to-sky-700 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="font-display text-4xl sm:text-5xl font-bold mb-4">About SkyNest</h1>
+      <p class="text-sky-100 text-lg">We believe every journey should start with clarity, confidence, and a little magic.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="prose prose-lg max-w-none">
+        <h2 class="font-display text-3xl font-bold text-sky-900 mb-6">Our Mission</h2>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          SkyNest was built for travelers who want simplicity without sacrificing choice. We connect you directly to the world’s best airlines and hotels so you can compare real prices, book with confidence, and keep full control of your trip.
+        </p>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          Unlike traditional booking platforms that insert themselves between you and the carrier, SkyNest acts as your smart discovery layer. Search once, explore transparent options, then complete your booking on the official airline or hotel site.
+        </p>
+
+        <h2 class="font-display text-3xl font-bold text-sky-900 mb-6 mt-12">Why “SkyNest”?</h2>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          The name captures the two sides of every great trip: the thrill of soaring through the sky and the comfort of a perfect place to nest when you land. Flights that lift you up. Stays that feel like home.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-6 my-12">
+          <div class="bg-sky-50 rounded-2xl p-6 text-center">
+            <div class="text-3xl font-bold text-sky-600 mb-2">500+</div>
+            <div class="text-sm text-gray-600">Airlines linked</div>
+          </div>
+          <div class="bg-sky-50 rounded-2xl p-6 text-center">
+            <div class="text-3xl font-bold text-sky-600 mb-2">2M+</div>
+            <div class="text-sm text-gray-600">Hotels & stays</div>
+          </div>
+          <div class="bg-sky-50 rounded-2xl p-6 text-center">
+            <div class="text-3xl font-bold text-sky-600 mb-2">0</div>
+            <div class="text-sm text-gray-600">Hidden booking fees</div>
+          </div>
+        </div>
+
+        <h2 class="font-display text-3xl font-bold text-sky-900 mb-6">Our Promise</h2>
+        <ul class="space-y-3 text-gray-600">
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-sky-500 mt-1"></i> Transparent pricing — what you see is what the airline or hotel charges</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-sky-500 mt-1"></i> Direct links so you manage your booking with the actual provider</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-sky-500 mt-1"></i> Clean, fast experience with no clutter or pressure tactics</li>
+          <li class="flex items-start gap-3"><i class="fas fa-check-circle text-sky-500 mt-1"></i> Privacy-first approach — we don’t sell your search data</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-sky-950 text-sky-200 py-10">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+      <p>© 2026 SkyNest. All rights reserved. · <a href="../index.html" class="hover:text-white">Home</a> · <a href="contact.html" class="hover:text-white">Contact</a> · <a href="privacy.html" class="hover:text-white">Privacy</a></p>
+    </div>
+  </footer>
+</body>
+</html>

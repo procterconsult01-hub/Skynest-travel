@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyNest — Book Flights & Hotels. Soar High. Nest Well.</title>
+  <meta name="description" content="SkyNest: Your ultimate travel booking platform for flights and hotels. Link directly to top airlines. Discover deals, plan trips, and launch your next adventure.">
+  <meta name="keywords" content="flights, hotels, travel booking, cheap flights, airline tickets, hotel deals, SkyNest">
+  <meta name="author" content="SkyNest">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://skynest.travel/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://skynest.travel/">
+  <meta property="og:title" content="SkyNest — Soar High. Nest Well.">
+  <meta property="og:description" content="Book flights & hotels. Direct links to top airlines. Your next adventure starts here.">
+  <meta property="og:image" content="https://skynest.travel/images/logo-icon.svg">
+  <meta property="og:site_name" content="SkyNest">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SkyNest — Soar High. Nest Well.">
+  <meta name="twitter:description" content="Book flights & hotels with direct airline links.">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" href="images/logo-icon.svg" type="image/svg+xml">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            nest: {
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-bg {
+      background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 40%, #0ea5e9 100%);
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(14, 165, 233, 0.25);
+    }
+    .airline-logo {
+      filter: grayscale(30%);
+      transition: filter 0.3s;
+    }
+    .airline-logo:hover {
+      filter: grayscale(0%);
+    }
+    .tab-active {
+      background: white;
+      color: #0369a1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-800 antialiased">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-sky-700 flex items-center justify-center">
+            <i class="fas fa-plane text-white text-lg"></i>
+          </div>
+          <span class="font-display text-2xl font-bold text-sky-800">SkyNest</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#flights" class="text-gray-600 hover:text-sky-600 font-medium transition">Flights</a>
+          <a href="#hotels" class="text-gray-600 hover:text-sky-600 font-medium transition">Hotels</a>
+          <a href="#packages" class="text-gray-600 hover:text-sky-600 font-medium transition">Packages</a>
+          <a href="#destinations" class="text-gray-600 hover:text-sky-600 font-medium transition">Destinations</a>
+          <a href="pages/about.html" class="text-gray-600 hover:text-sky-600 font-medium transition">About</a>
+          <a href="pages/contact.html" class="text-gray-600 hover:text-sky-600 font-medium transition">Contact</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="#search" class="hidden sm:inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-full font-semibold transition shadow-lg shadow-sky-200">
+            <i class="fas fa-search"></i> Search Deals
+          </a>
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-600">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="px-4 py-3 space-y-2">
+        <a href="#flights" class="block py-2 text-gray-700">Flights</a>
+        <a href="#hotels" class="block py-2 text-gray-700">Hotels</a>
+        <a href="#packages" class="block py-2 text-gray-700">Packages</a>
+        <a href="#destinations" class="block py-2 text-gray-700">Destinations</a>
+        <a href="pages/about.html" class="block py-2 text-gray-700">About</a>
+        <a href="pages/contact.html" class="block py-2 text-gray-700">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-bg pt-28 pb-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-20 w-96 h-96 bg-sky-300 rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-12 fade-in">
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
+          Soar High.<br class="sm:hidden"> <span class="text-sky-200">Nest Well.</span>
+        </h1>
+        <p class="text-sky-100 text-lg sm:text-xl max-w-2xl mx-auto">
+          Book flights & hotels in one place. Direct links to the world’s top airlines. Your next adventure starts here.
+        </p>
+      </div>
+
+      <!-- Search Box -->
+      <div id="search" class="max-w-4xl mx-auto glass rounded-2xl p-6 sm:p-8 shadow-2xl fade-in">
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-6">
+          <button onclick="switchTab('flights')" id="tab-flights" class="tab-active px-6 py-2.5 rounded-full font-semibold text-sm transition flex items-center gap-2">
+            <i class="fas fa-plane"></i> Flights
+          </button>
+          <button onclick="switchTab('hotels')" id="tab-hotels" class="px-6 py-2.5 rounded-full font-semibold text-sm text-white/80 hover:bg-white/10 transition flex items-center gap-2">
+            <i class="fas fa-hotel"></i> Hotels
+          </button>
+          <button onclick="switchTab('packages')" id="tab-packages" class="px-6 py-2.5 rounded-full font-semibold text-sm text-white/80 hover:bg-white/10 transition flex items-center gap-2">
+            <i class="fas fa-suitcase-rolling"></i> Packages
+          </button>
+        </div>
+
+        <!-- Flights Form -->
+        <form id="form-flights" class="space-y-4" onsubmit="handleFlightSearch(event)">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">From</label>
+              <input type="text" id="from" placeholder="City or airport" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">To</label>
+              <input type="text" id="to" placeholder="City or airport" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">Depart</label>
+              <input type="date" id="depart" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">Return</label>
+              <input type="date" id="return" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800">
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 items-end">
+            <div class="flex-1">
+              <label class="block text-white/80 text-sm mb-1.5">Travelers</label>
+              <select id="travelers" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800">
+                <option value="1">1 Adult</option>
+                <option value="2">2 Adults</option>
+                <option value="3">3 Adults</option>
+                <option value="4">4+ Adults</option>
+              </select>
+            </div>
+            <div class="flex-1">
+              <label class="block text-white/80 text-sm mb-1.5">Cabin</label>
+              <select id="cabin" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800">
+                <option value="economy">Economy</option>
+                <option value="premium">Premium Economy</option>
+                <option value="business">Business</option>
+                <option value="first">First Class</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full sm:w-auto bg-nest-500 hover:bg-nest-600 text-white font-bold px-8 py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              <i class="fas fa-search"></i> Search Flights
+            </button>
+          </div>
+        </form>
+
+        <!-- Hotels Form (hidden by default) -->
+        <form id="form-hotels" class="space-y-4 hidden" onsubmit="handleHotelSearch(event)">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-white/80 text-sm mb-1.5">Destination</label>
+              <input type="text" id="hotel-dest" placeholder="City, hotel or landmark" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">Check-in</label>
+              <input type="date" id="checkin" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">Check-out</label>
+              <input type="date" id="checkout" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 items-end">
+            <div class="flex-1">
+              <label class="block text-white/80 text-sm mb-1.5">Guests</label>
+              <select id="guests" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800">
+                <option value="1">1 Guest</option>
+                <option value="2">2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4+ Guests</option>
+              </select>
+            </div>
+            <div class="flex-1">
+              <label class="block text-white/80 text-sm mb-1.5">Rooms</label>
+              <select id="rooms" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800">
+                <option value="1">1 Room</option>
+                <option value="2">2 Rooms</option>
+                <option value="3">3 Rooms</option>
+              </select>
+            </div>
+            <button type="submit" class="w-full sm:w-auto bg-nest-500 hover:bg-nest-600 text-white font-bold px-8 py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              <i class="fas fa-search"></i> Search Hotels
+            </button>
+          </div>
+        </form>
+
+        <!-- Packages Form -->
+        <form id="form-packages" class="space-y-4 hidden" onsubmit="handlePackageSearch(event)">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">From</label>
+              <input type="text" id="pkg-from" placeholder="Departure city" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">To</label>
+              <input type="text" id="pkg-to" placeholder="Destination" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">Depart</label>
+              <input type="date" id="pkg-date" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800" required>
+            </div>
+            <div>
+              <label class="block text-white/80 text-sm mb-1.5">Nights</label>
+              <select id="pkg-nights" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 focus:ring-2 focus:ring-sky-400 outline-none text-gray-800">
+                <option value="3">3 nights</option>
+                <option value="5" selected>5 nights</option>
+                <option value="7">7 nights</option>
+                <option value="10">10 nights</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 items-end">
+            <div class="flex-1">
+              <label class="block text-white/80 text-sm mb-1.5">Include</label>
+              <div class="flex flex-wrap gap-3 text-white text-sm">
+                <label class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg cursor-pointer">
+                  <input type="checkbox" id="pkg-flight" checked class="rounded"> Flight
+                </label>
+                <label class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg cursor-pointer">
+                  <input type="checkbox" id="pkg-hotel" checked class="rounded"> Hotel
+                </label>
+                <label class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg cursor-pointer">
+                  <input type="checkbox" id="pkg-car" class="rounded"> Car Rental
+                </label>
+              </div>
+            </div>
+            <button type="submit" class="w-full sm:w-auto bg-nest-500 hover:bg-nest-600 text-white font-bold px-8 py-3.5 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              <i class="fas fa-magic"></i> Find Packages
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <section class="bg-white py-6 border-b">
+    <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center items-center gap-8 sm:gap-16 text-gray-500 text-sm">
+      <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-sky-500"></i> Secure Booking</div>
+      <div class="flex items-center gap-2"><i class="fas fa-headset text-sky-500"></i> 24/7 Support</div>
+      <div class="flex items-center gap-2"><i class="fas fa-tags text-sky-500"></i> Best Price Promise</div>
+      <div class="flex items-center gap-2"><i class="fas fa-globe text-sky-500"></i> 500+ Airlines</div>
+      <div class="flex items-center gap-2"><i class="fas fa-hotel text-sky-500"></i> 2M+ Hotels</div>
+    </div>
+  </section>
+
+  <!-- Featured Destinations -->
+  <section id="destinations" class="py-20 bg-sky-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-sky-900 mb-3">Trending Destinations</h2>
+        <p class="text-gray-600 max-w-xl mx-auto">Hand-picked escapes loved by travelers this season</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Europe -->
+        <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
+          <div class="h-48 bg-gradient-to-br from-indigo-500 to-blue-700 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-landmark text-white text-5xl opacity-80"></i>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/90 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">From $349</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-gray-900">Europe</h3>
+            <p class="text-gray-500 text-sm mb-3">Paris • Rome • Barcelona • London</p>
+            <a href="pages/destination-europe.html" class="text-sky-600 font-semibold text-sm hover:underline">Explore guide →</a>
+          </div>
+        </div>
+        <!-- Africa -->
+        <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
+          <div class="h-48 bg-gradient-to-br from-amber-500 to-orange-700 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-binoculars text-white text-5xl opacity-80"></i>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/90 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">From $599</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-gray-900">Africa</h3>
+            <p class="text-gray-500 text-sm mb-3">Cape Town • Safari • Morocco • Zanzibar</p>
+            <a href="pages/destination-africa.html" class="text-sky-600 font-semibold text-sm hover:underline">Explore guide →</a>
+          </div>
+        </div>
+        <!-- Bali -->
+        <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
+          <div class="h-48 bg-gradient-to-br from-amber-400 to-orange-500 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-umbrella-beach text-white text-5xl opacity-80"></i>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/90 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">From $199</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-gray-900">Bali</h3>
+            <p class="text-gray-500 text-sm mb-3">Indonesia • Tropical Paradise</p>
+            <a href="pages/destination-bali.html" class="text-sky-600 font-semibold text-sm hover:underline">Explore guide →</a>
+          </div>
+        </div>
+        <!-- New York -->
+        <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
+          <div class="h-48 bg-gradient-to-br from-sky-400 to-blue-600 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-city text-white text-5xl opacity-80"></i>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/90 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">From $289</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-gray-900">New York</h3>
+            <p class="text-gray-500 text-sm mb-3">USA • Flights + Hotels</p>
+            <a href="#search" class="text-sky-600 font-semibold text-sm hover:underline">Explore deals →</a>
+          </div>
+        </div>
+        <!-- Paris -->
+        <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
+          <div class="h-48 bg-gradient-to-br from-rose-400 to-pink-600 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-heart text-white text-5xl opacity-80"></i>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/90 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">From $349</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-gray-900">Paris</h3>
+            <p class="text-gray-500 text-sm mb-3">France • City of Lights</p>
+            <a href="pages/destination-europe.html" class="text-sky-600 font-semibold text-sm hover:underline">Explore guide →</a>
+          </div>
+        </div>
+        <!-- Tokyo -->
+        <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-md">
+          <div class="h-48 bg-gradient-to-br from-emerald-400 to-teal-600 relative">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <i class="fas fa-torii-gate text-white text-5xl opacity-80"></i>
+            </div>
+            <span class="absolute top-3 right-3 bg-white/90 text-sky-800 text-xs font-bold px-3 py-1 rounded-full">From $420</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-bold text-lg text-gray-900">Tokyo</h3>
+            <p class="text-gray-500 text-sm mb-3">Japan • Culture & Cuisine</p>
+            <a href="#search" class="text-sky-600 font-semibold text-sm hover:underline">Explore deals →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flights Section -->
+  <section id="flights" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <div class="lg:w-1/2">
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-sky-900 mb-4">Find the Perfect Flight</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            Search hundreds of airlines in seconds. Compare fares, choose your cabin, and book directly with confidence. We link you straight to the airline or trusted partners so you get the real price—no hidden markups.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-sky-500"></i> Real-time fares from 500+ airlines</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-sky-500"></i> Flexible date search & price alerts</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-sky-500"></i> Direct booking links — no middleman fees</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-sky-500"></i> Support for multi-city & complex itineraries</li>
+          </ul>
+          <a href="#search" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-full transition">
+            Start Flight Search <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="lg:w-1/2">
+          <div class="bg-gradient-to-br from-sky-100 to-sky-200 rounded-3xl p-8 shadow-xl">
+            <div class="space-y-4">
+              <div class="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center"><i class="fas fa-plane text-sky-600"></i></div>
+                  <div>
+                    <div class="font-semibold">JFK → LAX</div>
+                    <div class="text-sm text-gray-500">Nonstop • 6h 15m</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="font-bold text-sky-700">$189</div>
+                  <div class="text-xs text-gray-400">Economy</div>
+                </div>
+              </div>
+              <div class="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center"><i class="fas fa-plane text-amber-600"></i></div>
+                  <div>
+                    <div class="font-semibold">LHR → CDG</div>
+                    <div class="text-sm text-gray-500">1 stop • 3h 40m</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="font-bold text-sky-700">$97</div>
+                  <div class="text-xs text-gray-400">Economy</div>
+                </div>
+              </div>
+              <div class="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center"><i class="fas fa-plane text-emerald-600"></i></div>
+                  <div>
+                    <div class="font-semibold">SFO → NRT</div>
+                    <div class="text-sm text-gray-500">Nonstop • 11h 05m</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="font-bold text-sky-700">$612</div>
+                  <div class="text-xs text-gray-400">Premium</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hotels Section -->
+  <section id="hotels" class="py-20 bg-sky-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row-reverse gap-12 items-center">
+        <div class="lg:w-1/2">
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-sky-900 mb-4">Stay Where You Belong</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            From boutique stays to luxury resorts, SkyNest connects you to millions of properties worldwide. Filter by price, rating, amenities, and book with free cancellation options.
+          </p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-nest-500"></i> 2M+ hotels, villas & apartments</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-nest-500"></i> Verified guest reviews</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-nest-500"></i> Instant confirmation & flexible cancellation</li>
+            <li class="flex items-center gap-3"><i class="fas fa-check-circle text-nest-500"></i> Exclusive member rates</li>
+          </ul>
+          <a href="#search" class="inline-flex items-center gap-2 bg-nest-500 hover:bg-nest-600 text-white font-semibold px-6 py-3 rounded-full transition">
+            Search Hotels <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+          <div class="bg-white rounded-2xl p-5 shadow-md card-hover">
+            <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center mb-3"><i class="fas fa-star text-sky-600"></i></div>
+            <h4 class="font-bold">Luxury</h4>
+            <p class="text-sm text-gray-500">5-star resorts & iconic hotels</p>
+          </div>
+          <div class="bg-white rounded-2xl p-5 shadow-md card-hover">
+            <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-3"><i class="fas fa-home text-amber-600"></i></div>
+            <h4 class="font-bold">Homes</h4>
+            <p class="text-sm text-gray-500">Villas, apartments & unique stays</p>
+          </div>
+          <div class="bg-white rounded-2xl p-5 shadow-md card-hover">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mb-3"><i class="fas fa-briefcase text-emerald-600"></i></div>
+            <h4 class="font-bold">Business</h4>
+            <p class="text-sm text-gray-500">City centers with workspaces</p>
+          </div>
+          <div class="bg-white rounded-2xl p-5 shadow-md card-hover">
+            <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center mb-3"><i class="fas fa-heart text-rose-600"></i></div>
+            <h4 class="font-bold">Romance</h4>
+            <p class="text-sm text-gray-500">Boutique & couples getaways</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Airlines Partners -->
+  <section id="airlines" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-sky-900 mb-3">Fly with Trusted Airlines</h2>
+        <p class="text-gray-600 max-w-xl mx-auto">Direct links to official airline websites. Book with confidence and manage your trip on their platforms.</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <!-- Airline cards with real links -->
+        <a href="https://www.delta.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-red-600 text-lg">Δ</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">Delta</span>
+        </a>
+        <a href="https://www.united.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-blue-700 text-lg">UA</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">United</span>
+        </a>
+        <a href="https://www.aa.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-sky-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-sky-700 text-lg">AA</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">American</span>
+        </a>
+        <a href="https://www.emirates.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-red-700 text-sm">EK</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">Emirates</span>
+        </a>
+        <a href="https://www.britishairways.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-blue-800 text-sm">BA</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">British Airways</span>
+        </a>
+        <a href="https://www.lufthansa.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-yellow-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-yellow-700 text-sm">LH</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">Lufthansa</span>
+        </a>
+        <a href="https://www.airfrance.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-blue-600 text-sm">AF</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">Air France</span>
+        </a>
+        <a href="https://www.qatarairways.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-purple-700 text-sm">QR</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">Qatar Airways</span>
+        </a>
+        <a href="https://www.singaporeair.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-yellow-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-yellow-800 text-sm">SQ</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">Singapore Air</span>
+        </a>
+        <a href="https://www.ana.co.jp" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-blue-700 text-sm">NH</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">ANA</span>
+        </a>
+        <a href="https://www.jetblue.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-sky-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-sky-600 text-sm">B6</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">JetBlue</span>
+        </a>
+        <a href="https://www.southwest.com" target="_blank" rel="noopener" class="airline-logo bg-gray-50 hover:bg-white rounded-2xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition border border-transparent hover:border-sky-200">
+          <div class="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center mb-3">
+            <span class="font-bold text-orange-600 text-sm">WN</span>
+          </div>
+          <span class="font-semibold text-sm text-gray-700">Southwest</span>
+        </a>
+      </div>
+      <p class="text-center text-sm text-gray-500 mt-8">Plus 500+ more carriers worldwide. Search above to compare all options.</p>
+    </div>
+  </section>
+
+  <!-- Packages Section -->
+  <section id="packages" class="py-20 bg-sky-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-sky-900 mb-3">Flight + Hotel + Car Packages</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Build complete trips in one place. Choose your flights, hotel and optional car rental — then book each component with trusted providers.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-6 shadow-md card-hover">
+          <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center mb-4"><i class="fas fa-plane text-sky-600 text-xl"></i></div>
+          <h3 class="font-bold text-lg mb-2">City Break</h3>
+          <p class="text-gray-500 text-sm mb-4">Flight + 3–5 nights hotel. Perfect for Paris, Rome, Barcelona or New York. Car optional for day trips.</p>
+          <ul class="text-sm text-gray-600 space-y-1 mb-5">
+            <li>✓ Round-trip flights</li>
+            <li>✓ Centrally located hotel</li>
+            <li>✓ Optional compact car</li>
+          </ul>
+          <a href="#search" onclick="switchTab('packages')" class="text-sky-600 font-semibold text-sm hover:underline">Build this package →</a>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-md card-hover border-2 border-nest-500 relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-nest-500 text-white text-xs font-bold px-3 py-1 rounded-full">Popular</span>
+          <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4"><i class="fas fa-car text-amber-600 text-xl"></i></div>
+          <h3 class="font-bold text-lg mb-2">Explorer</h3>
+          <p class="text-gray-500 text-sm mb-4">Flight + hotel + car rental. Ideal for Cape Town, Morocco, road-trip Europe or Bali island hopping.</p>
+          <ul class="text-sm text-gray-600 space-y-1 mb-5">
+            <li>✓ Round-trip flights</li>
+            <li>✓ 5–7 nights hotel</li>
+            <li>✓ Full-size or SUV rental</li>
+          </ul>
+          <a href="#search" onclick="switchTab('packages')" class="text-sky-600 font-semibold text-sm hover:underline">Build this package →</a>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-md card-hover">
+          <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mb-4"><i class="fas fa-globe-africa text-emerald-600 text-xl"></i></div>
+          <h3 class="font-bold text-lg mb-2">Multi-Stop Adventure</h3>
+          <p class="text-gray-500 text-sm mb-4">Open-jaw or multi-city flights + hotels + car where useful. Great for Europe rail + fly or Africa safari circuits.</p>
+          <ul class="text-sm text-gray-600 space-y-1 mb-5">
+            <li>✓ Flexible flight routing</li>
+            <li>✓ Multiple hotels</li>
+            <li>✓ Car for selected segments</li>
+          </ul>
+          <a href="#search" onclick="switchTab('packages')" class="text-sky-600 font-semibold text-sm hover:underline">Build this package →</a>
+        </div>
+      </div>
+      <p class="text-center text-sm text-gray-500 mt-10">Packages currently open the best flight, hotel and car-rental search results so you can book each part at the real provider price.</p>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section id="how" class="py-20 bg-gradient-to-b from-sky-900 to-sky-800 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-3">How SkyNest Works</h2>
+        <p class="text-sky-200 max-w-xl mx-auto">Three simple steps to your next trip</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center mx-auto mb-5 text-2xl font-bold">1</div>
+          <h3 class="font-bold text-xl mb-2">Search</h3>
+          <p class="text-sky-200">Enter your destinations, dates and preferences. We scan airlines and hotels in real time.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center mx-auto mb-5 text-2xl font-bold">2</div>
+          <h3 class="font-bold text-xl mb-2">Compare & Choose</h3>
+          <p class="text-sky-200">See transparent prices, schedules and amenities. Pick the option that fits you best.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-sky-500 flex items-center justify-center mx-auto mb-5 text-2xl font-bold">3</div>
+          <h3 class="font-bold text-xl mb-2">Book Directly</h3>
+          <p class="text-sky-200">We link you to the airline or hotel site to complete booking securely on their platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-nest-500">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-4">Ready to take off?</h2>
+      <p class="text-amber-100 text-lg mb-8">Join thousands of travelers who start their journeys with SkyNest.</p>
+      <a href="#search" class="inline-flex items-center gap-2 bg-white text-nest-600 font-bold px-8 py-4 rounded-full text-lg hover:bg-sky-50 transition shadow-lg">
+        <i class="fas fa-plane-departure"></i> Start Searching Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-sky-950 text-sky-200 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-9 h-9 rounded-full bg-sky-500 flex items-center justify-center">
+              <i class="fas fa-plane text-white"></i>
+            </div>
+            <span class="font-display text-xl font-bold text-white">SkyNest</span>
+          </div>
+          <p class="text-sm leading-relaxed">Soar high. Nest well. Your trusted companion for flights, hotels and unforgettable journeys.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Explore</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#flights" class="hover:text-white transition">Flights</a></li>
+            <li><a href="#hotels" class="hover:text-white transition">Hotels</a></li>
+            <li><a href="#airlines" class="hover:text-white transition">Airlines</a></li>
+            <li><a href="pages/blog.html" class="hover:text-white transition">Blog</a></li>
+            <li><a href="pages/faq.html" class="hover:text-white transition">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Support</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="pages/contact.html" class="hover:text-white transition">Contact Us</a></li>
+            <li><a href="pages/about.html" class="hover:text-white transition">About SkyNest</a></li>
+            <li><a href="pages/privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="pages/contact.html" class="hover:text-white transition">Help & Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Connect</h4>
+          <div class="flex gap-4 mb-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-sky-600 flex items-center justify-center transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-sky-600 flex items-center justify-center transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-sky-600 flex items-center justify-center transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-sky-800 hover:bg-sky-600 flex items-center justify-center transition"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <p class="text-xs">© 2026 SkyNest. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="border-t border-sky-800 pt-8 text-center text-xs text-sky-400">
+        SkyNest is a travel discovery platform. Bookings are completed on airline and hotel partner sites. We do not process payments or issue tickets directly.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Tab switching
+    function switchTab(tab) {
+      ['flights', 'hotels', 'packages'].forEach(t => {
+        document.getElementById('form-' + t).classList.add('hidden');
+        document.getElementById('tab-' + t).classList.remove('tab-active');
+        document.getElementById('tab-' + t).classList.add('text-white/80');
+      });
+      document.getElementById('form-' + tab).classList.remove('hidden');
+      document.getElementById('tab-' + tab).classList.add('tab-active');
+      document.getElementById('tab-' + tab).classList.remove('text-white/80');
+    }
+
+    // Set min dates to today
+    const today = new Date().toISOString().split('T')[0];
+    ['depart', 'return', 'checkin', 'checkout', 'pkg-date'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.min = today;
+    });
+
+    // Flight search → Google Flights (or similar)
+    function handleFlightSearch(e) {
+      e.preventDefault();
+      const from = document.getElementById('from').value.trim();
+      const to = document.getElementById('to').value.trim();
+      const depart = document.getElementById('depart').value;
+      const ret = document.getElementById('return').value;
+      // Build Google Flights URL
+      let url = `https://www.google.com/travel/flights?q=Flights%20to%20${encodeURIComponent(to)}%20from%20${encodeURIComponent(from)}%20on%20${depart}`;
+      if (ret) url += `%20through%20${ret}`;
+      window.open(url, '_blank');
+    }
+
+    // Hotel search → Booking.com or Google Hotels
+    function handleHotelSearch(e) {
+      e.preventDefault();
+      const dest = document.getElementById('hotel-dest').value.trim();
+      const checkin = document.getElementById('checkin').value;
+      const checkout = document.getElementById('checkout').value;
+      const url = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(dest)}&checkin=${checkin}&checkout=${checkout}`;
+      window.open(url, '_blank');
+    }
+
+    // Package search → Google Flights + Hotels (car via note)
+    function handlePackageSearch(e) {
+      e.preventDefault();
+      const from = document.getElementById('pkg-from').value.trim();
+      const to = document.getElementById('pkg-to').value.trim();
+      const date = document.getElementById('pkg-date').value;
+      const nights = document.getElementById('pkg-nights').value;
+      const wantCar = document.getElementById('pkg-car').checked;
+      // Open Google Flights for the air portion
+      let flightUrl = `https://www.google.com/travel/flights?q=Flights%20to%20${encodeURIComponent(to)}%20from%20${encodeURIComponent(from)}%20on%20${date}`;
+      window.open(flightUrl, '_blank');
+      // Also open hotel search
+      const checkout = new Date(date);
+      checkout.setDate(checkout.getDate() + parseInt(nights));
+      const checkoutStr = checkout.toISOString().split('T')[0];
+      const hotelUrl = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(to)}&checkin=${date}&checkout=${checkoutStr}`;
+      setTimeout(() => window.open(hotelUrl, '_blank'), 600);
+      if (wantCar) {
+        setTimeout(() => {
+          const carUrl = `https://www.google.com/search?q=car+rental+${encodeURIComponent(to)}`;
+          window.open(carUrl, '_blank');
+        }, 1200);
+      }
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.getElementById('mobile-menu').classList.add('hidden');
+        }
+      });
+    });
+
+    // PWA Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

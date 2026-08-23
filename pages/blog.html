@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Blog — SkyNest</title>
+  <meta name="description" content="Travel tips, destination guides and inspiration from SkyNest.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{sky:{50:'#f0f9ff',100:'#e0f2fe',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',900:'#0c4a6e'},nest:{500:'#f59e0b'}},fontFamily:{sans:['Inter','sans-serif'],display:['Playfair Display','serif']}}}}</script>
+</head>
+<body class="font-sans text-gray-800 antialiased">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
+      <a href="../index.html" class="flex items-center gap-2">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-500 to-sky-700 flex items-center justify-center"><i class="fas fa-plane text-white"></i></div>
+        <span class="font-display text-2xl font-bold text-sky-800">SkyNest</span>
+      </a>
+      <a href="../index.html#search" class="bg-sky-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Search Deals</a>
+    </div>
+  </nav>
+
+  <section class="pt-28 pb-12 bg-gradient-to-br from-sky-900 to-sky-700 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h1 class="font-display text-4xl font-bold mb-3">SkyNest Travel Journal</h1>
+      <p class="text-sky-100">Tips, guides and inspiration for your next adventure</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-sky-50">
+    <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Post 1 -->
+      <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div class="h-44 bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">
+          <i class="fas fa-suitcase-rolling text-white text-5xl opacity-80"></i>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-sky-600 uppercase">Tips</span>
+          <h2 class="font-bold text-lg mt-1 mb-2">How to Find the Cheapest Flights in 2026</h2>
+          <p class="text-gray-500 text-sm mb-4">Flexible dates, mid-week departures, and the best tools that still work this year.</p>
+          <a href="blog-cheapest-flights.html" class="text-sky-600 font-semibold text-sm">Read more →</a>
+        </div>
+      </article>
+      <!-- Post 2 -->
+      <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div class="h-44 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+          <i class="fas fa-umbrella-beach text-white text-5xl opacity-80"></i>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-nest-500 uppercase">Destination</span>
+          <h2 class="font-bold text-lg mt-1 mb-2">Bali on a Budget: Where to Stay & Fly</h2>
+          <p class="text-gray-500 text-sm mb-4">Best arrival airports, neighborhood guide, and sample 7-day itinerary under $1,200.</p>
+          <a href="destination-bali.html" class="text-sky-600 font-semibold text-sm">Read more →</a>
+        </div>
+      </article>
+      <!-- Post 3 -->
+      <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div class="h-44 bg-gradient-to-br from-amber-600 to-orange-700 flex items-center justify-center">
+          <i class="fas fa-binoculars text-white text-5xl opacity-80"></i>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-orange-600 uppercase">Destination</span>
+          <h2 class="font-bold text-lg mt-1 mb-2">Africa Highlights: Safari, Cape Town & Morocco</h2>
+          <p class="text-gray-500 text-sm mb-4">Top gateways, best seasons and sample itineraries across the continent.</p>
+          <a href="destination-africa.html" class="text-sky-600 font-semibold text-sm">Read more →</a>
+        </div>
+      </article>
+      <!-- Post 4 -->
+      <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div class="h-44 bg-gradient-to-br from-indigo-500 to-blue-700 flex items-center justify-center">
+          <i class="fas fa-landmark text-white text-5xl opacity-80"></i>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-indigo-600 uppercase">Destination</span>
+          <h2 class="font-bold text-lg mt-1 mb-2">Europe by Rail & Air: Classic Itineraries</h2>
+          <p class="text-gray-500 text-sm mb-4">Paris, Rome, Barcelona, Amsterdam and the best ways to connect them.</p>
+          <a href="destination-europe.html" class="text-sky-600 font-semibold text-sm">Read more →</a>
+        </div>
+      </article>
+      <!-- Post 5 -->
+      <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div class="h-44 bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-hotel text-white text-5xl opacity-80"></i>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-emerald-600 uppercase">Hotels</span>
+          <h2 class="font-bold text-lg mt-1 mb-2">Boutique vs Big Chain: Which Hotel Style Wins?</h2>
+          <p class="text-gray-500 text-sm mb-4">When to choose independent properties and when loyalty programs actually pay off.</p>
+          <a href="#" class="text-sky-600 font-semibold text-sm">Coming soon</a>
+        </div>
+      </article>
+
+      <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div class="h-44 bg-gradient-to-br from-green-500 to-yellow-500 flex items-center justify-center">
+          <i class="fas fa-globe-americas text-white text-5xl opacity-80"></i>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-green-600 uppercase">South America</span>
+          <h2 class="font-bold text-lg mt-1 mb-2">Rio, Buenos Aires & Cusco</h2>
+          <p class="text-gray-500 text-sm mb-4">New city guides for Brazil, Argentina and Peru’s Inca capital.</p>
+          <a href="destination-rio.html" class="text-sky-600 font-semibold text-sm">Rio →</a>
+          <a href="destination-buenos-aires.html" class="text-sky-600 font-semibold text-sm ml-3">Buenos Aires →</a>
+          <a href="destination-cusco.html" class="text-sky-600 font-semibold text-sm ml-3">Cusco →</a>
+        </div>
+      </article>
+      <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+        <div class="h-44 bg-gradient-to-br from-amber-600 to-slate-700 flex items-center justify-center">
+          <i class="fas fa-mosque text-white text-5xl opacity-80"></i>
+        </div>
+        <div class="p-6">
+          <span class="text-xs font-semibold text-amber-600 uppercase">Middle East</span>
+          <h2 class="font-bold text-lg mt-1 mb-2">Dubai, Istanbul & Amman</h2>
+          <p class="text-gray-500 text-sm mb-4">Luxury hubs, historic crossroads and the gateway to Petra.</p>
+          <a href="destination-dubai.html" class="text-sky-600 font-semibold text-sm">Dubai →</a>
+          <a href="destination-istanbul.html" class="text-sky-600 font-semibold text-sm ml-3">Istanbul →</a>
+          <a href="destination-amman.html" class="text-sky-600 font-semibold text-sm ml-3">Amman →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="bg-sky-950 text-sky-200 py-8 text-center text-sm">
+    <p>© 2026 SkyNest · <a href="../index.html" class="hover:text-white">Home</a> · <a href="contact.html" class="hover:text-white">Contact</a></p>
+  </footer>
+</body>
+</html>

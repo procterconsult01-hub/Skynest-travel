@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Plane icon circle -->
+  <circle cx="28" cy="30" r="22" fill="url(#grad)"/>
+  <path d="M18 32 L28 18 L38 32 L32 30 L32 38 L24 38 L24 30 Z" fill="white" transform="rotate(45 28 30)"/>
+  <path d="M22 34 Q28 28 34 34" stroke="white" stroke-width="1.5" fill="none" opacity="0.7"/>
+  
+  <!-- Text -->
+  <text x="58" y="38" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#0c4a6e">SkyNest</text>
+  
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+</svg>
